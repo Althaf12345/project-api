@@ -5,9 +5,9 @@
 module Api.Types (API, Response(..)) where
 
 import Servant.API (Get, (:>), JSON, QueryParam, Capture)
-import Data.Time
-import GHC.Generics
-import Data.Aeson
+import Data.Time ( UTCTime )
+import GHC.Generics ( Generic )
+import Data.Aeson ( FromJSON, ToJSON )
 
 -- | API Structure
 type API = GetArticles
