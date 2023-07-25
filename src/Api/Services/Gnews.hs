@@ -2,8 +2,19 @@
 module Api.Services.Gnews (requestToGnews) where
 
 import Network.HTTP.Req
+    ( (/:),
+      (=:),
+      defaultHttpConfig,
+      https,
+      jsonResponse,
+      req,
+      responseBody,
+      responseStatusCode,
+      runReq,
+      GET(GET),
+      NoReqBody(NoReqBody) )
 
-import Api.Types
+import Api.Types ( Response )
 
 -- apikey for Gnews service
 apiKey :: String

@@ -5,11 +5,11 @@ where
 
 import Servant.Server (ServerError, Handler, errHeaders, errBody)
 import Servant (throwError, err400)
-import Control.Monad.IO.Class
+import Control.Monad.IO.Class ( MonadIO(liftIO) )
 import Data.Aeson (encode, (.=), object, Value (Null))
 
-import Api.Types
-import Api.Services.Gnews
+import Api.Types ( Response )
+import Api.Services.Gnews ( requestToGnews )
 
 -- return the response for given keyword, count and search attribute
 getArticlesHandler :: String -> Maybe Int -> Maybe String -> Handler Response
