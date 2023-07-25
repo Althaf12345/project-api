@@ -70,10 +70,18 @@
 
 `http://localhost:8001/articles/<keyword>?articlesCount=<count>&attribute=<attribute>`
 
+
+#### keyword -> string
+#### count -> integer greater than 0 and less than or equal to 100
+#### attribute -> string (eg:"title","description","title,description")
+
+
 ## How to run this haskell project
 
-1. Clone the repo 
-2. cd project-api
-3. stack ghci
-4. :l app/Main.hs
-5. startApp
+1. Clone the repository - `git clone https://github.com/Althaf12345/project-api.git`
+2. Change directory to project-api - `cd project-api`
+3. Enter command - `stack ghci`
+4. Load the file Main.hs in app folder of project-api - `:l app/Main.hs`
+5. Call the function startApp which will start the application on port 8001 - `startApp`
+6. Hit the endpoint - 
+  `http://localhost:8001/articles/<keyword>?articlesCount=<count>&attribute=<attribute>`
