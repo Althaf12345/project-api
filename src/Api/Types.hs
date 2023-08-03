@@ -1,50 +1,55 @@
-{-#LANGUAGE DuplicateRecordFields #-}
-{-#LANGUAGE DataKinds #-} -- for "articles"
-{-#LANGUAGE TypeOperators #-} -- for :>
-{-#LANGUAGE DeriveGeneric #-}
-module Api.Types (API, Response(..)) where
+{-# LANGUAGE DataKinds #-}
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE TypeOperators #-}
 
-import Servant.API (Get, (:>), JSON, QueryParam, Capture)
-import Data.Time ( UTCTime )
-import GHC.Generics ( Generic )
-import Data.Aeson ( FromJSON, ToJSON )
+module Api.Types (API, Response (..)) where
+
+import Data.Aeson (FromJSON, ToJSON)
+import Data.Text (Text)
+import Data.Time (UTCTime)
+import GHC.Generics (Generic)
+import Servant.API (Get, JSON, QueryParam, (:>))
 
 -- | API Structure
 type API = GetArticles
 
 type GetArticles =
     "articles"
-    :> Capture "keyword" String 
-    :> QueryParam "articlesCount" Int
-    :> QueryParam "attribute" String
-    :> Get '[JSON] Response 
+        :> QueryParam "keyword" Text
+        :> QueryParam "articlesCount" Int
+        :> QueryParam "attribute" Text
+        :> Get '[JSON] Response
 
 -- Data type for the response from Gnews
-data Response = Response 
-  { totalArticles :: Int
-  , articles :: [Article]
-  } deriving (Generic)
+data Response = Response
+    { totalArticles :: Int
+    , articles :: [Article]
+    }
+    deriving (Generic)
 
 instance FromJSON Response
 instance ToJSON Response
 
 data Article = Article
-  { title :: String
-  , description :: String
-  , content :: String
-  , url :: String
-  , image :: String
-  , publishedAt :: UTCTime
-  , source :: Source
-  } deriving (Generic)
+    { title :: Text
+    , description :: Text
+    , content :: Text
+    , url :: Text
+    , image :: Text
+    , publishedAt :: UTCTime
+    , source :: Source
+    }
+    deriving (Generic)
 
 instance FromJSON Article
 instance ToJSON Article
 
 data Source = Source
-  { name :: String
-  , url :: String
-  } deriving (Generic)
+    { name :: Text
+    , url :: Text
+    }
+    deriving (Generic)
 
 instance FromJSON Source
 instance ToJSON Source
