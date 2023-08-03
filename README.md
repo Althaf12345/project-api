@@ -10,16 +10,7 @@
 
 - articlesCount
      - **Description**: This query parameter allows you to specify the number of news articles returned by the API. The minimum value of this parameter is 1 and the maximum value is 100. Default value is 10.
-     If we give a count > 100 or <= 0 , get error response.
-
-    ```javascript
-    {
-    "code": 400,
-    "error": "Invalid count",
-    "result": null
-    }   
-    ```
-
+     If we give a count > 100 or <= 0 , will return error response "Count should be greater than zero and less than or equal to 100".
 
 - attribute
      - **Description**: This query parameter allows you to choose in which attributes the keywords are searched. The attributes that can be set are title, description and content. It is possible to combine several attributes by separating them with a comma.
@@ -79,9 +70,11 @@
 ## How to run this haskell project
 
 1. Clone the repository - `git clone https://github.com/Althaf12345/project-api.git`
-2. Change directory to project-api - `cd project-api`
-3. Enter command - `stack ghci`
-4. Load the file Main.hs in app folder of project-api - `:l app/Main.hs`
-5. Call the function startApp which will start the application on port 8001 - `startApp`
-6. Hit the endpoint - 
+2. Install redis 
+3. Run redis-server in a seperate terminal
+4. Change directory to project-api - `cd project-api`
+5. Enter command - `stack ghci`
+6. Load the file Main.hs in app folder of project-api - `:l app/Main.hs`
+7. Call the function startApp which will start the application on port 8001 - `startApp`
+8. Hit the endpoint - 
   `http://localhost:8001/articles/<keyword>?articlesCount=<count>&attribute=<attribute>`

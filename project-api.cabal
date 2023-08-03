@@ -26,9 +26,10 @@ source-repository head
 library
   exposed-modules:
       Api.Handler.GetArticlesHandler
-      Api.Main
       Api.Services.Gnews
+      Api.Services.Redis
       Api.Types
+      Server
   other-modules:
       Paths_project_api
   hs-source-dirs:
@@ -36,10 +37,14 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       aeson
+    , aeson-extra
     , base >=4.7 && <5
+    , bytestring
+    , hedis
     , req
     , servant
     , servant-server
+    , text
     , time
     , warp
   default-language: Haskell2010
@@ -53,11 +58,15 @@ executable project-api-exe
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
+    , aeson-extra
     , base >=4.7 && <5
+    , bytestring
+    , hedis
     , project-api
     , req
     , servant
     , servant-server
+    , text
     , time
     , warp
   default-language: Haskell2010

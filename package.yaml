@@ -27,6 +27,10 @@ dependencies:
 - warp
 - req
 - aeson
+- hedis
+- bytestring
+- aeson-extra
+- text
 
 ghc-options:
 - -Wall
